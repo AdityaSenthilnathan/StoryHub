@@ -1,10 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import {createAppContainer} from 'react-navigation'
+import {createAppContainer, createSwitchNavigator} from 'react-navigation'
 import {createBottomTabNavigator} from 'react-navigation-tabs'
 import WriteStoryScreen from './screens/WriteStoryScreen'
 import ReadStoryScreen from './screens/ReadStoryScreen'
+import AuthenticationScreen from './screens/AuthenticationScreen'
 
 export default function App() {
   return (
@@ -22,8 +23,13 @@ const styles = StyleSheet.create({
 });
 
 var TabNavigator = createBottomTabNavigator({
-ReadStoryScreen:ReadStoryScreen,
-WriteStoryScreen:WriteStoryScreen
-})
+  ReadStoryScreen:ReadStoryScreen,
+  WriteStoryScreen:WriteStoryScreen
+  })
 
-const AppContainer  = createAppContainer(TabNavigator);
+  var SwitchNavigator = createSwitchNavigator({
+    AuthenticationScreen: AuthenticationScreen,
+    TabNavigator: TabNavigator
+    })
+    
+const AppContainer  = createAppContainer(SwitchNavigator);
